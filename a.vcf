@@ -1,0 +1,9 @@
+VirtualDub.Open("clip000-raw-rgb32-384x256.avi");
+VirtualDub.video.SetMode(3);
+VirtualDub.video.SetInputFormat(0);
+VirtualDub.video.SetOutputFormat(13);
+VirtualDub.video.SetCompression();
+VirtualDub.video.filters.Clear();
+VirtualDub.video.filters.Add("resize");
+VirtualDub.video.filters.instance[0].Config(128, 254, 0);
+VirtualDub.SaveAVI("fmt-13.avi");
