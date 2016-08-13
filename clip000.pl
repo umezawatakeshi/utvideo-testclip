@@ -93,13 +93,13 @@ my $progints = {
 foreach my $comp (@$comps) {
 	my $fourcc = $comp->{fourcc};
 	my $srcn = $comp->{srcn};
-	foreach my $progint (keys(%$progints)) {
+	foreach my $progint (sort(keys(%$progints))) {
 		foreach my $sizepair ($progint eq "progressive" ? @{$comp->{sizes}} : @{$comp->{sizes_int}}) {
 			my $width  = $sizepair->[0];
 			my $height = $sizepair->[1];
 			my $size = $width . "x" . $height;
-			foreach my $div (keys(%$divs)) {
-				foreach my $pred (keys(%$preds)) {
+			foreach my $div (sort(keys(%$divs))) {
+				foreach my $pred (sort(keys(%$preds))) {
 					my $confval = $divs->{$div} | $preds->{$pred} | $progints->{$progint};
 					my $confstr = pack("V", $confval);
 					my $confb64 = encode_base64($confstr, "");
