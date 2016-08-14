@@ -65,6 +65,10 @@ __EOT__
 	}
 }
 
+print <<__EOT__;
+VirtualDub.video.filters.Clear();
+__EOT__
+
 my $comps = [
 	{ fourcc => "ulrg", srcn => "rgb24", sizes => $sizes_444, sizes_int => $sizes_444_int },
 	{ fourcc => "ulra", srcn => "rgba",  sizes => $sizes_444, sizes_int => $sizes_444_int },
@@ -110,9 +114,6 @@ VirtualDub.video.SetInputFormat(0);
 VirtualDub.video.SetOutputFormat(0);
 VirtualDub.video.SetCompression("$fourcc", 0, 0, 0);
 VirtualDub.video.SetCompData(4, "$confb64");
-VirtualDub.video.filters.Clear();
-VirtualDub.video.filters.Add("resize");
-VirtualDub.video.filters.instance[0].Config($width, $height, 0);
 VirtualDub.SaveAVI("clip000-$fourcc-$progint-$pred-$div-$size.avi");
 __EOT__
 				}
