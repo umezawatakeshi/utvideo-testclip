@@ -72,8 +72,10 @@ __EOT__
 my $comps = [
 	{ fourcc => "ulrg", srcn => "rgb24", sizes => $sizes_444, sizes_int => $sizes_444_int },
 	{ fourcc => "ulra", srcn => "rgba",  sizes => $sizes_444, sizes_int => $sizes_444_int },
+	{ fourcc => "uly4", srcn => "yv24",  sizes => $sizes_444, sizes_int => $sizes_444_int },
 	{ fourcc => "uly2", srcn => "yuy2",  sizes => $sizes_422, sizes_int => $sizes_422_int },
 	{ fourcc => "uly0", srcn => "yv12",  sizes => $sizes_420, sizes_int => $sizes_420_int },
+	{ fourcc => "ulh4", srcn => "yv24",  sizes => $sizes_444, sizes_int => $sizes_444_int },
 	{ fourcc => "ulh2", srcn => "yuy2",  sizes => $sizes_422, sizes_int => $sizes_422_int },
 	{ fourcc => "ulh0", srcn => "yv12",  sizes => $sizes_420, sizes_int => $sizes_420_int },
 ];
