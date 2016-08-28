@@ -1,0 +1,15 @@
+!IFNDEF PERL
+PERL=C:\cygwin\bin\perl.exe
+!ENDIF
+
+!IFNDEF VDUB
+VDUB=D:\_Download\VirtualDub-1.10.4\VDub.exe
+!ENDIF
+
+dummy:
+
+all: clip000 clip001
+
+clip000 clip001:
+	$(PERL) $@.pl
+	$(VDUB) /s $@.vcf
