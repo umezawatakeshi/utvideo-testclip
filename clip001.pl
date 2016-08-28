@@ -25,6 +25,8 @@ sub VDVMODE_FAST()   { 1 }
 sub VDVMODE_SLOW()   { 2 }
 sub VDVMODE_FULL()   { 3 }
 
+open(my $FH, ">clip001.vcf") || die;
+
 my $sizes_444 = [ [ 384, 256 ], [ 383, 256 ], [ 382, 256 ], [ 381, 256 ], [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
 my $sizes_422 = [ [ 384, 256 ],               [ 382, 256 ],               [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
 my $sizes_420 = [ [ 384, 256 ],               [ 382, 256 ],                             [ 384, 254 ],               [ 384, 512 ] ];
@@ -51,7 +53,7 @@ foreach my $raw (@$raws) {
 		my $width  = $sizepair->[0];
 		my $height = $sizepair->[1];
 		my $size = $width . "x" . $height;
-		print <<__EOT__;
+		print $FH <<__EOT__;
 VirtualDub.Open("clip001-src-$srcn-384x512.avs");
 VirtualDub.video.SetMode(3);
 VirtualDub.video.SetInputFormat(0);
@@ -65,7 +67,7 @@ __EOT__
 	}
 }
 
-print <<__EOT__;
+print $FH <<__EOT__;
 VirtualDub.video.filters.Clear();
 __EOT__
 
@@ -109,7 +111,7 @@ foreach my $comp (@$comps) {
 					my $confval = $divs->{$div} | $preds->{$pred} | $progints->{$progint};
 					my $confstr = pack("V", $confval);
 					my $confb64 = encode_base64($confstr, "");
-					print <<__EOT__;
+					print $FH <<__EOT__;
 VirtualDub.Open("clip001-raw-$srcn-$size.avi");
 VirtualDub.video.SetMode(3);
 VirtualDub.video.SetInputFormat(0);
