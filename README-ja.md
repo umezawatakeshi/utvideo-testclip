@@ -1,3 +1,5 @@
+英語版は[こちら](README.md)
+
 # utvideo-testclip
 
 Ut Video Codec Suite のユニットテストのためのテストクリップ
