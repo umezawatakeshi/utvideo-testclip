@@ -8,8 +8,8 @@ VDUB=D:\_Download\VirtualDub-1.10.4\VDub.exe
 
 dummy:
 
-all: clip000 clip001 clip002 clip100 clip200 clip201 clip202
+all: clip000 clip001 clip002 clip100 clip200 clip201 clip202 clip203
 
-clip000 clip001 clip002 clip100 clip200 clip201 clip202:
+clip000 clip001 clip002 clip100 clip200 clip201 clip202 clip203:
 	$(PERL) $@.pl
 	$(VDUB) /s $@.vcf
