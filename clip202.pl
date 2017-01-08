@@ -59,6 +59,7 @@ my $raws0 = [
 	{ srcn => "yv24-rgb32-bt709",  ofmt => VDVFMT_RGB24,  dstn => "yv24-rgb24-bt709",  sizes => $sizes_444 },
 	{ srcn => "yuy2",              ofmt => VDVFMT_UYVY,  dstn => "uyvy",  sizes => $sizes_422 },
 	{ srcn => "yuy2",              ofmt => VDVFMT_YUY2,  dstn => "yuy2",  sizes => $sizes_422 },
+	{ srcn => "yuy2",              ofmt => VDVFMT_YV16,  dstn => "yv16",  sizes => $sizes_422 },
 	{ srcn => "yv12",              ofmt => VDVFMT_YV12,  dstn => "yv12",  sizes => $sizes_420 },
 	{ srcn => "yv12-rgb32-bt601-progressive",  ofmt => VDVFMT_RGB32,  dstn => "yv12-rgb32-bt601-progressive",  sizes => $sizes_420 },
 	{ srcn => "yv12-rgb32-bt601-progressive",  ofmt => VDVFMT_RGB24,  dstn => "yv12-rgb24-bt601-progressive",  sizes => $sizes_420 },

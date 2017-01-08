@@ -42,6 +42,7 @@ my $raws = [
 	{ srcn => "yuv",   ofmt => VDVFMT_YV24,  dstn => "yv24",  sizes => $sizes_444 },
 	{ srcn => "yuv",   ofmt => VDVFMT_UYVY,  dstn => "uyvy",  sizes => $sizes_422 },
 	{ srcn => "yuv",   ofmt => VDVFMT_YUY2,  dstn => "yuy2",  sizes => $sizes_422 },
+	{ srcn => "yuv",   ofmt => VDVFMT_YV16,  dstn => "yv16",  sizes => $sizes_422 },
 	{ srcn => "yuv",   ofmt => VDVFMT_YV12,  dstn => "yv12",  sizes => $sizes_420 },
 ];
 
