@@ -58,7 +58,10 @@ my $raws0 = [
 ];
 
 my $raws1 = [
-	{ srcn => "yuy2-yv12",  ofmt => VDVFMT_YV12,  dstn => "yuy2-yv12",  sizes => $sizes_420, sizes_int => $sizes_420_int },
+	{ srcn => "yuy2-yv12",       ofmt => VDVFMT_YV12,  dstn => "yuy2-yv12",       sizes => $sizes_420, sizes_int => $sizes_420_int },
+	{ srcn => "yuy2-yv12-yuy2",  ofmt => VDVFMT_UYVY,  dstn => "yuy2-yv12-uyvy",  sizes => $sizes_420, sizes_int => $sizes_420_int },
+	{ srcn => "yuy2-yv12-yuy2",  ofmt => VDVFMT_YUY2,  dstn => "yuy2-yv12-yuy2",  sizes => $sizes_420, sizes_int => $sizes_420_int },
+	{ srcn => "yuy2-yv12-yuy2",  ofmt => VDVFMT_YV16,  dstn => "yuy2-yv12-yv16",  sizes => $sizes_420, sizes_int => $sizes_420_int },
 ];
 
 foreach my $raw (@$raws0) {
