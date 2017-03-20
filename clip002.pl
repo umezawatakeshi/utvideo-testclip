@@ -42,8 +42,9 @@ my $divs = {
 };
 
 my $preds = {
-	left   => 0x00000100,
-	median => 0x00000300,
+	left     => 0x00000100,
+	gradient => 0x00000200,
+	median   => 0x00000300,
 };
 
 my $progints = {
