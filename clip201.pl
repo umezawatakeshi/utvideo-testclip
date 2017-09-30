@@ -5,35 +5,10 @@ use warnings;
 
 use MIME::Base64;
 
-# video formats (for video.SetInputFormat/SetOutputFormat)
-sub VDVFMT_AUTO()  {  0 }
-sub VDVFMT_RGB15() {  5 }
-sub VDVFMT_RGB16() {  6 }
-sub VDVFMT_RGB24() {  7 }
-sub VDVFMT_RGB32() {  8 }
-sub VDVFMT_Y8()    {  9 }
-sub VDVFMT_UYVY()  { 10 }
-sub VDVFMT_YUY2()  { 11 }
-sub VDVFMT_YV24()  { 13 }
-sub VDVFMT_YV16()  { 14 }
-sub VDVFMT_YV12()  { 15 }
-sub VDVFMT_YVU9()  { 17 }
 
-# video modes (for video.GetMode/SetMode)
-sub VDVMODE_DIRECT() { 0 }
-sub VDVMODE_FAST()   { 1 }
-sub VDVMODE_SLOW()   { 2 }
-sub VDVMODE_FULL()   { 3 }
+use Defs;
 
 open(my $FH, ">clip201.vcf") || die;
-
-my $sizes_444 = [ [ 384, 256 ], [ 383, 256 ], [ 382, 256 ], [ 381, 256 ], [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
-my $sizes_422 = [ [ 384, 256 ],               [ 382, 256 ],               [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
-my $sizes_420 = [ [ 384, 256 ],               [ 382, 256 ],                             [ 384, 254 ],               [ 384, 512 ] ];
-
-my $sizes_444_int = [ [ 384, 256 ], [ 383, 256 ], [ 382, 256 ], [ 381, 256 ], [ 384, 254 ], [ 384, 512 ] ];
-my $sizes_422_int = [ [ 384, 256 ],               [ 382, 256 ],               [ 384, 254 ], [ 384, 512 ] ];
-my $sizes_420_int = [ [ 384, 256 ],               [ 382, 256 ],                             [ 384, 512 ] ];
 
 my $divs = {
 	div1  => 0x00000000,
