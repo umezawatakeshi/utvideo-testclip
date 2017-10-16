@@ -9,23 +9,6 @@ use Defs;
 
 open(my $FH, ">clip100.vcf") || die;
 
-my $divs = {
-	div1  => 0x00000000,
-	div8  => 0x00000007,
-	div11 => 0x0000000a,
-};
-
-my $preds = {
-	left     => 0x00000100,
-	gradient => 0x00000200,
-	median   => 0x00000300,
-};
-
-my $progints = {
-	progressive => 0x00000000,
-	interlace   => 0x00000800,
-};
-
 my $raws0 = [
 	{ srcn => "yuy2",  ofmt => VDVFMT_UYVY,  dstn => "uyvy",  sizes => $sizes_422 },
 	{ srcn => "yuy2",  ofmt => VDVFMT_YUY2,  dstn => "yuy2",  sizes => $sizes_422 },
@@ -65,7 +48,7 @@ foreach my $raw (@$raws1) {
 	my $srcn = $raw->{srcn};
 	my $dstn = $raw->{dstn};
 	my $ofmt = $raw->{ofmt};
-	foreach my $progint (sort(keys(%$progints))) {
+	foreach my $progint (sort(keys(%$ulxx_progints))) {
 		foreach my $sizepair ($progint eq "progressive" ? @{$raw->{sizes}} : @{$raw->{sizes_int}}) {
 			my $width  = $sizepair->[0];
 			my $height = $sizepair->[1];
@@ -97,14 +80,14 @@ my $comps = [
 foreach my $comp (@$comps) {
 	my $fourcc = $comp->{fourcc};
 	my $srcn = $comp->{srcn};
-	foreach my $progint (sort(keys(%$progints))) {
+	foreach my $progint (sort(keys(%$ulxx_progints))) {
 		foreach my $sizepair ($progint eq "progressive" ? @{$comp->{sizes}} : @{$comp->{sizes_int}}) {
 			my $width  = $sizepair->[0];
 			my $height = $sizepair->[1];
 			my $size = $width . "x" . $height;
-			foreach my $div (sort(keys(%$divs))) {
-				foreach my $pred (sort(keys(%$preds))) {
-					my $confval = $divs->{$div} | $preds->{$pred} | $progints->{$progint};
+			foreach my $div (sort(keys(%$ulxx_divs))) {
+				foreach my $pred (sort(keys(%$ulxx_preds))) {
+					my $confval = $ulxx_divs->{$div} | $ulxx_preds->{$pred} | $ulxx_progints->{$progint};
 					my $confstr = pack("V", $confval);
 					my $confb64 = encode_base64($confstr, "");
 					print $FH <<__EOT__;

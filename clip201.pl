@@ -5,26 +5,9 @@ use warnings;
 
 use MIME::Base64;
 
-
 use Defs;
 
 open(my $FH, ">clip201.vcf") || die;
-
-my $divs = {
-	div1  => 0x00000000,
-	div8  => 0x00000007,
-	div11 => 0x0000000a,
-};
-
-my $preds = {
-	left   => 0x00000100,
-	median => 0x00000300,
-};
-
-my $progints = {
-	progressive => 0x00000000,
-	interlace   => 0x00000800,
-};
 
 my $raws0 = [
 	{ srcn => "rgb32",  ofmt => VDVFMT_RGB32,  dstn => "rgb32",  sizes => $sizes_444 },

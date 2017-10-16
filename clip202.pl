@@ -9,22 +9,6 @@ use Defs;
 
 open(my $FH, ">clip202.vcf") || die;
 
-my $divs = {
-	div1  => 0x00000000,
-	div8  => 0x00000007,
-	div11 => 0x0000000a,
-};
-
-my $preds = {
-	left   => 0x00000100,
-	median => 0x00000300,
-};
-
-my $progints = {
-	progressive => 0x00000000,
-	interlace   => 0x00000800,
-};
-
 my $raws0 = [
 	{ srcn => "yv24",              ofmt => VDVFMT_YV24,   dstn => "yv24",              sizes => $sizes_444 },
 	{ srcn => "yv24-rgb32-bt601",  ofmt => VDVFMT_RGB32,  dstn => "yv24-rgb32-bt601",  sizes => $sizes_444 },

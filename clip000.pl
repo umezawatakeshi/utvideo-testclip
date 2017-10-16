@@ -57,34 +57,17 @@ my $comps = [
 	{ fourcc => "ulh0", srcn => "yv12",  sizes => $sizes_420, sizes_int => $sizes_420_int },
 ];
 
-my $divs = {
-	div1  => 0x00000000,
-	div8  => 0x00000007,
-	div11 => 0x0000000a,
-};
-
-my $preds = {
-	left     => 0x00000100,
-	gradient => 0x00000200,
-	median   => 0x00000300,
-};
-
-my $progints = {
-	progressive => 0x00000000,
-	interlace   => 0x00000800,
-};
-
 foreach my $comp (@$comps) {
 	my $fourcc = $comp->{fourcc};
 	my $srcn = $comp->{srcn};
-	foreach my $progint (sort(keys(%$progints))) {
+	foreach my $progint (sort(keys(%$ulxx_progints))) {
 		foreach my $sizepair ($progint eq "progressive" ? @{$comp->{sizes}} : @{$comp->{sizes_int}}) {
 			my $width  = $sizepair->[0];
 			my $height = $sizepair->[1];
 			my $size = $width . "x" . $height;
-			foreach my $div (sort(keys(%$divs))) {
-				foreach my $pred (sort(keys(%$preds))) {
-					my $confval = $divs->{$div} | $preds->{$pred} | $progints->{$progint};
+			foreach my $div (sort(keys(%$ulxx_divs))) {
+				foreach my $pred (sort(keys(%$ulxx_preds))) {
+					my $confval = $ulxx_divs->{$div} | $ulxx_preds->{$pred} | $ulxx_progints->{$progint};
 					my $confstr = pack("V", $confval);
 					my $confb64 = encode_base64($confstr, "");
 					print $FH <<__EOT__;

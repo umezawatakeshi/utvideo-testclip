@@ -9,23 +9,6 @@ use Defs;
 
 open(my $FH, ">clip002.vcf") || die;
 
-my $divs = {
-	div1  => 0x00000000,
-	div8  => 0x00000007,
-	div11 => 0x0000000a,
-};
-
-my $preds = {
-	left     => 0x00000100,
-	gradient => 0x00000200,
-	median   => 0x00000300,
-};
-
-my $progints = {
-	progressive => 0x00000000,
-	interlace   => 0x00000800,
-};
-
 my $raws = [
 	{ srcn => "rgb24", ofmt => VDVFMT_RGB24, dstn => "rgb24", sizes => $sizes_444, sizes_int => $sizes_444_int },
 	{ srcn => "rgb32", ofmt => VDVFMT_RGB32, dstn => "rgb32", sizes => $sizes_444, sizes_int => $sizes_444_int },
@@ -41,13 +24,13 @@ foreach my $raw (@$raws) {
 	my $srcn = $raw->{srcn};
 	my $dstn = $raw->{dstn};
 	my $ofmt = $raw->{ofmt};
-	foreach my $progint (sort(keys(%$progints))) {
+	foreach my $progint (sort(keys(%$ulxx_progints))) {
 		foreach my $sizepair ($progint eq "progressive" ? @{$raw->{sizes}} : @{$raw->{sizes_int}}) {
 			my $width  = $sizepair->[0];
 			my $height = $sizepair->[1];
 			my $size = $width . "x" . $height;
-			foreach my $div (sort(keys(%$divs))) {
-				foreach my $pred (sort(keys(%$preds))) {
+			foreach my $div (sort(keys(%$ulxx_divs))) {
+				foreach my $pred (sort(keys(%$ulxx_preds))) {
 					open(my $AVS, ">clip002-src-$srcn-$progint-$pred-$div-$size.avs") || die $!;
 					open(my $AVSSRC, "<clip002-src-$srcn.avs") || die "$srcn: $!";
 					print $AVS <<__EOT__;
@@ -94,14 +77,14 @@ my $comps = [
 foreach my $comp (@$comps) {
 	my $fourcc = $comp->{fourcc};
 	my $srcn = $comp->{srcn};
-	foreach my $progint (sort(keys(%$progints))) {
+	foreach my $progint (sort(keys(%$ulxx_progints))) {
 		foreach my $sizepair ($progint eq "progressive" ? @{$comp->{sizes}} : @{$comp->{sizes_int}}) {
 			my $width  = $sizepair->[0];
 			my $height = $sizepair->[1];
 			my $size = $width . "x" . $height;
-			foreach my $div (sort(keys(%$divs))) {
-				foreach my $pred (sort(keys(%$preds))) {
-					my $confval = $divs->{$div} | $preds->{$pred} | $progints->{$progint};
+			foreach my $div (sort(keys(%$ulxx_divs))) {
+				foreach my $pred (sort(keys(%$ulxx_preds))) {
+					my $confval = $ulxx_divs->{$div} | $ulxx_preds->{$pred} | $ulxx_progints->{$progint};
 					my $confstr = pack("V", $confval);
 					my $confb64 = encode_base64($confstr, "");
 					print $FH <<__EOT__;
