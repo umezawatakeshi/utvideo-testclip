@@ -17,7 +17,7 @@ BEGIN {
 }
 our @EXPORT_OK;
 
-# VirtualDub video formats (for video.SetInputFormat/SetOutputFormat) (from src/h/vd2/plugin/vdplugin.h)
+# VirtualDub video formats (for video.SetInputFormat/SetOutputFormat) (from src/h/vd2/Kasumi/pixmap.h)
 sub VDVFMT_AUTO()  {  0 }
 sub VDVFMT_RGB15() {  5 }
 sub VDVFMT_RGB16() {  6 }
