@@ -46,18 +46,18 @@ print $FH <<__EOT__;
 VirtualDub.video.filters.Clear();
 __EOT__
 
-my $comps = [
-	{ fourcc => "ulrg", srcn => "rgb24", sizes => $sizes_444, sizes_int => $sizes_444_int },
-	{ fourcc => "ulra", srcn => "rgba",  sizes => $sizes_444, sizes_int => $sizes_444_int },
-	{ fourcc => "uly4", srcn => "yv24",  sizes => $sizes_444, sizes_int => $sizes_444_int },
-	{ fourcc => "uly2", srcn => "yuy2",  sizes => $sizes_422, sizes_int => $sizes_422_int },
-	{ fourcc => "uly0", srcn => "yv12",  sizes => $sizes_420, sizes_int => $sizes_420_int },
-	{ fourcc => "ulh4", srcn => "yv24",  sizes => $sizes_444, sizes_int => $sizes_444_int },
-	{ fourcc => "ulh2", srcn => "yuy2",  sizes => $sizes_422, sizes_int => $sizes_422_int },
-	{ fourcc => "ulh0", srcn => "yv12",  sizes => $sizes_420, sizes_int => $sizes_420_int },
+my $ulxx_comps = [
+	{ fourcc => "ulrg", srcn => "rgb24", sizes => $ulxx_sizes_444, sizes_int => $ulxx_sizes_444_int },
+	{ fourcc => "ulra", srcn => "rgba",  sizes => $ulxx_sizes_444, sizes_int => $ulxx_sizes_444_int },
+	{ fourcc => "uly4", srcn => "yv24",  sizes => $ulxx_sizes_444, sizes_int => $ulxx_sizes_444_int },
+	{ fourcc => "uly2", srcn => "yuy2",  sizes => $ulxx_sizes_422, sizes_int => $ulxx_sizes_422_int },
+	{ fourcc => "uly0", srcn => "yv12",  sizes => $ulxx_sizes_420, sizes_int => $ulxx_sizes_420_int },
+	{ fourcc => "ulh4", srcn => "yv24",  sizes => $ulxx_sizes_444, sizes_int => $ulxx_sizes_444_int },
+	{ fourcc => "ulh2", srcn => "yuy2",  sizes => $ulxx_sizes_422, sizes_int => $ulxx_sizes_422_int },
+	{ fourcc => "ulh0", srcn => "yv12",  sizes => $ulxx_sizes_420, sizes_int => $ulxx_sizes_420_int },
 ];
 
-foreach my $comp (@$comps) {
+foreach my $comp (@$ulxx_comps) {
 	my $fourcc = $comp->{fourcc};
 	my $srcn = $comp->{srcn};
 	foreach my $progint (sort(keys(%$ulxx_progints))) {

@@ -72,12 +72,12 @@ print $FH <<__EOT__;
 VirtualDub.video.filters.Clear();
 __EOT__
 
-my $comps = [
-	{ fourcc => "uly0", srcn => "yuy2",  sizes => $sizes_420, sizes_int => $sizes_420_int },
-	{ fourcc => "ulh0", srcn => "yuy2",  sizes => $sizes_420, sizes_int => $sizes_420_int },
+my $ulxx_comps = [
+	{ fourcc => "uly0", srcn => "yuy2",  sizes => $ulxx_sizes_420, sizes_int => $ulxx_sizes_420_int },
+	{ fourcc => "ulh0", srcn => "yuy2",  sizes => $ulxx_sizes_420, sizes_int => $ulxx_sizes_420_int },
 ];
 
-foreach my $comp (@$comps) {
+foreach my $comp (@$ulxx_comps) {
 	my $fourcc = $comp->{fourcc};
 	my $srcn = $comp->{srcn};
 	foreach my $progint (sort(keys(%$ulxx_progints))) {
