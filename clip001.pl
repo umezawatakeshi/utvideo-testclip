@@ -84,3 +84,36 @@ __EOT__
 		}
 	}
 }
+
+my $umxx_comps = [
+	{ fourcc => "umrg", srcn => "rgb24", sizes => $umxx_sizes_444 },
+	{ fourcc => "umra", srcn => "rgba",  sizes => $umxx_sizes_444 },
+	{ fourcc => "umy4", srcn => "yv24",  sizes => $umxx_sizes_444 },
+	{ fourcc => "umy2", srcn => "yuy2",  sizes => $umxx_sizes_422 },
+	{ fourcc => "umh4", srcn => "yv24",  sizes => $umxx_sizes_444 },
+	{ fourcc => "umh2", srcn => "yuy2",  sizes => $umxx_sizes_422 },
+];
+
+foreach my $comp (@$umxx_comps) {
+	my $fourcc = $comp->{fourcc};
+	my $srcn = $comp->{srcn};
+	foreach my $sizepair (@{$comp->{sizes}}) {
+		my $width  = $sizepair->[0];
+		my $height = $sizepair->[1];
+		my $size = $width . "x" . $height;
+		foreach my $div (sort(keys(%$umxx_divs))) {
+			my $confval = $umxx_divs->{$div};
+			my $confstr = pack("V", $confval);
+			my $confb64 = encode_base64($confstr, "");
+			print $FH <<__EOT__;
+VirtualDub.Open("clip001-raw-$srcn-$size.avi");
+VirtualDub.video.SetMode(3);
+VirtualDub.video.SetInputFormat(0);
+VirtualDub.video.SetOutputFormat(0);
+VirtualDub.video.SetCompression("$fourcc", 0, 0, 0);
+VirtualDub.video.SetCompData(4, "$confb64");
+VirtualDub.SaveAVI("clip001-$fourcc-$div-$size.avi");
+__EOT__
+		}
+	}
+}

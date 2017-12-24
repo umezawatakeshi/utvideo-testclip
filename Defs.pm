@@ -13,8 +13,12 @@ BEGIN {
 	push(@EXPORT, qw(VDVFMT_AUTO VDVFMT_RGB15 VDVFMT_RGB16 VDVFMT_RGB24 VDVFMT_RGB32 VDVFMT_Y8 VDVFMT_UYVY VDVFMT_YUY2 VDVFMT_YV24 VDVFMT_YV16 VDVFMT_YV12 VDVFMT_YVU9));
 	push(@EXPORT, qw(VDVMODE_DIRECT VDVMODE_FAST VDVMODE_SLOW VDVMODE_FULL));
 	push(@EXPORT, qw($sizes_444 $sizes_422 $sizes_420 $sizes_444_int $sizes_422_int $sizes_420_int));
+
 	push(@EXPORT, qw($ulxx_sizes_444 $ulxx_sizes_422 $ulxx_sizes_420 $ulxx_sizes_444_int $ulxx_sizes_422_int $ulxx_sizes_420_int));
 	push(@EXPORT, qw($ulxx_divs $ulxx_preds $ulxx_progints));
+
+	push(@EXPORT, qw($umxx_sizes_444 $umxx_sizes_422 ));
+	push(@EXPORT, qw($umxx_divs));
 }
 our @EXPORT_OK;
 
@@ -39,12 +43,12 @@ sub VDVMODE_SLOW()   { 2 }
 sub VDVMODE_FULL()   { 3 }
 
 # clip sizes
-our $sizes_444     = [ [ 384, 256 ], [ 383, 256 ], [ 382, 256 ], [ 381, 256 ], [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
-our $sizes_422     = [ [ 384, 256 ],               [ 382, 256 ],               [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
-our $sizes_420     = [ [ 384, 256 ],               [ 382, 256 ],                             [ 384, 254 ],               [ 384, 512 ] ];
-our $sizes_444_int = [ [ 384, 256 ], [ 383, 256 ], [ 382, 256 ], [ 381, 256 ], [ 384, 254 ], [ 384, 512 ] ];
-our $sizes_422_int = [ [ 384, 256 ],               [ 382, 256 ],               [ 384, 254 ], [ 384, 512 ] ];
-our $sizes_420_int = [ [ 384, 256 ],               [ 382, 256 ],                             [ 384, 512 ] ];
+our $sizes_444     = [ [ 384, 256 ], [ 383, 256 ], [ 382, 256 ], [ 381, 256 ], [ 320, 256 ], [ 318, 256 ], [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
+our $sizes_422     = [ [ 384, 256 ],               [ 382, 256 ],               [ 320, 256 ], [ 318, 256 ], [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
+our $sizes_420     = [ [ 384, 256 ],               [ 382, 256 ],                                                         [ 384, 254 ],               [ 384, 512 ] ];
+our $sizes_444_int = [ [ 384, 256 ], [ 383, 256 ], [ 382, 256 ], [ 381, 256 ],                             [ 384, 254 ], [ 384, 512 ] ];
+our $sizes_422_int = [ [ 384, 256 ],               [ 382, 256 ],                                           [ 384, 254 ], [ 384, 512 ] ];
+our $sizes_420_int = [ [ 384, 256 ],               [ 382, 256 ],                                                         [ 384, 512 ] ];
 
 
 # ULxx
@@ -71,6 +75,18 @@ our $ulxx_preds = {
 our $ulxx_progints = {
 	progressive => 0x00000000,
 	interlace   => 0x00000800,
+};
+
+
+# UMxx
+
+our $umxx_sizes_444     = [ [ 384, 256 ], [ 383, 256 ], [ 382, 256 ], [ 381, 256 ], [ 320, 256 ], [ 318, 256 ], [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
+our $umxx_sizes_422     = [ [ 384, 256 ],               [ 382, 256 ],               [ 320, 256 ], [ 318, 256 ], [ 384, 255 ], [ 384, 254 ], [ 384, 253 ], [ 384, 512 ] ];
+
+our $umxx_divs = {
+	div1  => 0x00000000,
+	div8  => 0x00000700,
+	div11 => 0x00000a00,
 };
 
 1;
