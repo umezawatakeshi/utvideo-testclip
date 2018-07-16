@@ -25,7 +25,7 @@ class Program
         {
             int widthstep = type.StartsWith("1x") ? 1 : 2;
             int heightstep = type.Contains("x2h") ? 2 : 1;
-            int stripehight = type.EndsWith("h2") ? 2 : 1;
+            int stripeheight = type.EndsWith("h2") ? 2 : 1;
             foreach (var size in sizes)
             {
                 foreach (var progint in progints)
@@ -122,7 +122,7 @@ class Program
                     }
                     bmm.Save(basepath + "\\clip002-" + type + "-" + progint + "-median-div1-" + size.Width + "x" + size.Height + ".png");
 
-                    int curstripehight = stripehight * ((progint == "progressive") ? 1 : 2);
+                    int curstripehight = stripeheight * ((progint == "progressive") ? 1 : 2);
                     int[] divs = { 8, 11 };
                     foreach (var div in divs)
                     {
@@ -133,7 +133,7 @@ class Program
                         {
                             int top = ((size.Height / curstripehight * i) / div) * curstripehight;
                             int bottom = ((size.Height / curstripehight * (i + 1)) / div) * curstripehight;
-                            // Graphics.DrawImage とかだとアルファブレンディングの関係か期待した結果にならない
+                            // Graphics.DrawImage とかだとアルファブレンディングの関係なのか期待した結果にならない
                             for (int x = 0; x < size.Width; x++)
                             {
                                 for (int y = 0; y < bottom - top; y++)
