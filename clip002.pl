@@ -33,12 +33,12 @@ foreach my $raw (@$raws) {
 			my $size = $width . "x" . $height;
 			foreach my $div (sort(keys(%$ulxx_divs))) {
 				foreach my $pred (sort(keys(%$ulxx_preds))) {
-					open(my $AVS, ">clip002-src-$srcn-$progint-$pred-$div-$size.avs") || die $!;
+					open(my $AVS, ">clip002-src-$srcn-$progint-$pred-div$div-$size.avs") || die $!;
 					open(my $AVSSRC, "<clip002-src-$srcn.avs") || die "$srcn: $!";
 					print $AVS <<__EOT__;
 progint="$progint"
 pred="$pred"
-div="$div"
+div="div$div"
 width=$width
 height=$height
 __EOT__
@@ -47,13 +47,13 @@ __EOT__
 					close($AVSSRC);
 					close($AVS);
 					print $FH <<__EOT__;
-VirtualDub.Open("clip002-src-$srcn-$progint-$pred-$div-$size.avs");
+VirtualDub.Open("clip002-src-$srcn-$progint-$pred-div$div-$size.avs");
 VirtualDub.video.SetMode(3);
 VirtualDub.video.SetInputFormat(0);
 VirtualDub.video.SetOutputFormat($ofmt);
 VirtualDub.video.SetCompression();
 VirtualDub.video.filters.Clear();
-VirtualDub.SaveAVI("clip002-raw-$dstn-$progint-$pred-$div-$size.avi");
+VirtualDub.SaveAVI("clip002-raw-$dstn-$progint-$pred-div$div-$size.avi");
 __EOT__
 				}
 			}
@@ -90,13 +90,13 @@ foreach my $comp (@$ulxx_comps) {
 					my $confstr = pack("V", $confval);
 					my $confb64 = encode_base64($confstr, "");
 					print $FH <<__EOT__;
-VirtualDub.Open("clip002-raw-$srcn-$progint-$pred-$div-$size.avi");
+VirtualDub.Open("clip002-raw-$srcn-$progint-$pred-div$div-$size.avi");
 VirtualDub.video.SetMode(3);
 VirtualDub.video.SetInputFormat(0);
 VirtualDub.video.SetOutputFormat(0);
 VirtualDub.video.SetCompression("$fourcc", 0, 0, 0);
 VirtualDub.video.SetCompData(4, "$confb64");
-VirtualDub.SaveAVI("clip002-$fourcc-$progint-$pred-$div-$size.avi");
+VirtualDub.SaveAVI("clip002-$fourcc-$progint-$pred-div$div-$size.avi");
 __EOT__
 				}
 			}
@@ -125,13 +125,13 @@ foreach my $comp (@$umxx_comps) {
 			my $confstr = pack("V", $confval);
 			my $confb64 = encode_base64($confstr, "");
 			print $FH <<__EOT__;
-VirtualDub.Open("clip002-raw-$srcn-progressive-gradient-$div-$size.avi");
+VirtualDub.Open("clip002-raw-$srcn-progressive-gradient-div$div-$size.avi");
 VirtualDub.video.SetMode(3);
 VirtualDub.video.SetInputFormat(0);
 VirtualDub.video.SetOutputFormat(0);
 VirtualDub.video.SetCompression("$fourcc", 0, 0, 0);
 VirtualDub.video.SetCompData(4, "$confb64");
-VirtualDub.SaveAVI("clip002-$fourcc-$div-$size.avi");
+VirtualDub.SaveAVI("clip002-$fourcc-div$div-$size.avi");
 __EOT__
 		}
 	}

@@ -99,7 +99,7 @@ VirtualDub.video.SetInputFormat(0);
 VirtualDub.video.SetOutputFormat(0);
 VirtualDub.video.SetCompression("$fourcc", 0, 0, 0);
 VirtualDub.video.SetCompData(4, "$confb64");
-VirtualDub.SaveAVI("clip100-$fourcc-$progint-$pred-$div-$size.avi");
+VirtualDub.SaveAVI("clip100-$fourcc-$progint-$pred-div$div-$size.avi");
 __EOT__
 				}
 			}
