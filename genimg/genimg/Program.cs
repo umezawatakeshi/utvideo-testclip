@@ -12,8 +12,8 @@ class Program
 
         {
             Bitmap bm = new Bitmap(384, 512);
-            for (var x = 0; x < bm.Width; x++)
-                for (var y = 0; y < bm.Height; y++)
+            for (var y = 0; y < bm.Height; y++)
+                for (var x = 0; x < bm.Width; x++)
                     bm.SetPixel(x, y, Color.FromArgb(r.Next(256) * 0x01010101));
             bm.Save(basepath + "\\clip001.png");
         }
