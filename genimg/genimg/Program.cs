@@ -18,14 +18,13 @@ class Program
             bm.Save(basepath + "\\clip001.png");
         }
 
-        String[] types = { "1x1h1", "2x1h1", "1x1h2", "2x2h2" };
+        String[] types = { "1x1", "2x1", "2x2" };
         Size[] sizes = { new Size(384, 256), new Size(383, 256), new Size(382, 256), new Size(381, 256), new Size(320, 256), new Size(318, 256), new Size(384, 255), new Size(384, 254), new Size(384, 253), new Size(384, 512), };
         String[] progints = { "progressive", "interlace" };
         foreach (var type in types)
         {
             int widthstep = type.StartsWith("1x") ? 1 : 2;
-            int heightstep = type.Contains("x2h") ? 2 : 1;
-            int stripeheight = type.EndsWith("h2") ? 2 : 1;
+            int heightstep = type.Contains("x2") ? 2 : 1;
             foreach (var size in sizes)
             {
                 foreach (var progint in progints)
@@ -49,7 +48,7 @@ class Program
                                     bml.SetPixel(x + xx, y + yy, Color.FromArgb(v * 0x01010101));
                         }
                     }
-                    bml.Save(basepath + "\\clip002-" + type + "-" + progint + "-left-div1-" + size.Width + "x" + size.Height + ".png");
+                    bml.Save(basepath + "\\clip002-" + type + "-" + progint + "-left-" + size.Width + "x" + size.Height + ".png");
 
                     Bitmap bmg = new Bitmap(size.Width, size.Height);
                     v = 0x80;
@@ -84,7 +83,7 @@ class Program
                                     bmg.SetPixel(x + xx, y + yy, Color.FromArgb(v * 0x01010101));
                         }
                     }
-                    bmg.Save(basepath + "\\clip002-" + type + "-" + progint + "-gradient-div1-" + size.Width + "x" + size.Height + ".png");
+                    bmg.Save(basepath + "\\clip002-" + type + "-" + progint + "-gradient-" + size.Width + "x" + size.Height + ".png");
 
                     Bitmap bmm = new Bitmap(size.Width, size.Height);
                     v = 0x80;
@@ -120,34 +119,7 @@ class Program
                                     bmm.SetPixel(x + xx, y + yy, Color.FromArgb(v * 0x01010101));
                         }
                     }
-                    bmm.Save(basepath + "\\clip002-" + type + "-" + progint + "-median-div1-" + size.Width + "x" + size.Height + ".png");
-
-                    int curstripehight = stripeheight * ((progint == "progressive") ? 1 : 2);
-                    int[] divs = { 8, 11 };
-                    foreach (var div in divs)
-                    {
-                        Bitmap bmlx = new Bitmap(size.Width, size.Height);
-                        Bitmap bmgx = new Bitmap(size.Width, size.Height);
-                        Bitmap bmmx = new Bitmap(size.Width, size.Height);
-                        for (int i = 0; i < div; i++)
-                        {
-                            int top = ((size.Height / curstripehight * i) / div) * curstripehight;
-                            int bottom = ((size.Height / curstripehight * (i + 1)) / div) * curstripehight;
-                            // Graphics.DrawImage とかだとアルファブレンディングの関係なのか期待した結果にならない
-                            for (int x = 0; x < size.Width; x++)
-                            {
-                                for (int y = 0; y < bottom - top; y++)
-                                {
-                                    bmlx.SetPixel(x, y + top, bml.GetPixel(x, y));
-                                    bmgx.SetPixel(x, y + top, bmg.GetPixel(x, y));
-                                    bmmx.SetPixel(x, y + top, bmm.GetPixel(x, y));
-                                }
-                            }
-                        }
-                        bmlx.Save(basepath + "\\clip002-" + type + "-" + progint + "-left-div" + div + "-" + size.Width + "x" + size.Height + ".png");
-                        bmgx.Save(basepath + "\\clip002-" + type + "-" + progint + "-gradient-div" + div + "-" + size.Width + "x" + size.Height + ".png");
-                        bmmx.Save(basepath + "\\clip002-" + type + "-" + progint + "-median-div" + div + "-" + size.Width + "x" + size.Height + ".png");
-                    }
+                    bmm.Save(basepath + "\\clip002-" + type + "-" + progint + "-median-" + size.Width + "x" + size.Height + ".png");
                 }
             }
         }

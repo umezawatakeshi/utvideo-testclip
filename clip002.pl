@@ -38,7 +38,7 @@ foreach my $raw (@$raws) {
 					print $AVS <<__EOT__;
 progint="$progint"
 pred="$pred"
-div="div$div"
+div=$div
 width=$width
 height=$height
 __EOT__
