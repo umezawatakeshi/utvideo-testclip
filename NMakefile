@@ -3,7 +3,7 @@ PERL=C:\cygwin\bin\perl.exe
 !ENDIF
 
 !IFNDEF VDUB
-VDUB=D:\_Download\VirtualDub-1.10.4\VDub.exe
+VDUB=D:\_Download\VirtualDub2_42154\VDub64.exe
 !ENDIF
 
 dummy:
