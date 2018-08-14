@@ -20,6 +20,10 @@ my $raws = [
 	{ srcn => "yuv",   ofmt => VDVFMT_YUY2,  dstn => "yuy2",  sizes => $sizes_422 },
 	{ srcn => "yuv",   ofmt => VDVFMT_YV16,  dstn => "yv16",  sizes => $sizes_422 },
 	{ srcn => "yuv",   ofmt => VDVFMT_YV12,  dstn => "yv12",  sizes => $sizes_420 },
+	{ srcn => "rgb10bit",  ofmt => VDVFMT_r210, dstn => "rgb10bit_r210",  sizes => $sizes_444 },
+	{ srcn => "rgb10bit",  ofmt => VDVFMT_b64a, dstn => "rgb10bit_b64a",  sizes => $sizes_444 },
+	{ srcn => "rgba10bit", ofmt => VDVFMT_b64a, dstn => "rgba10bit_b64a", sizes => $sizes_444 },
+	{ srcn => "yuv10bit",  ofmt => VDVFMT_v210, dstn => "yuv10bit_v210",  sizes => $sizes_422 },
 ];
 
 foreach my $raw (@$raws) {
@@ -82,6 +86,38 @@ VirtualDub.video.SetCompData(4, "$confb64");
 VirtualDub.SaveAVI("clip000-$fourcc-$progint-$pred-div$div-$size.avi");
 __EOT__
 				}
+			}
+		}
+	}
+}
+
+my $uqxx_comps = [
+	{ fourcc => "uqrg", srcn => "rgb10bit_b64a",  sizes => $uqxx_sizes_444 },
+	{ fourcc => "uqra", srcn => "rgba10bit_b64a", sizes => $uqxx_sizes_444 },
+	{ fourcc => "uqy2", srcn => "yuv10bit_v210",  sizes => $uqxx_sizes_422 },
+];
+
+foreach my $comp (@$uqxx_comps) {
+	my $fourcc = $comp->{fourcc};
+	my $srcn = $comp->{srcn};
+	foreach my $sizepair (@{$comp->{sizes}}) {
+		my $width  = $sizepair->[0];
+		my $height = $sizepair->[1];
+		my $size = $width . "x" . $height;
+		foreach my $div (sort(keys(%$uqxx_divs))) {
+			foreach my $pred (sort(keys(%$uqxx_preds))) {
+				my $confval = $uqxx_divs->{$div} | $uqxx_preds->{$pred};
+				my $confstr = pack("V", $confval);
+				my $confb64 = encode_base64($confstr, "");
+				print $FH <<__EOT__;
+VirtualDub.Open("clip000-raw-$srcn-$size.avi");
+VirtualDub.video.SetMode(3);
+VirtualDub.video.SetInputFormat(0);
+VirtualDub.video.SetOutputFormat(0);
+VirtualDub.video.SetCompression("$fourcc", 0, 0, 0);
+VirtualDub.video.SetCompData(4, "$confb64");
+VirtualDub.SaveAVI("clip000-$fourcc-$pred-div$div-$size.avi");
+__EOT__
 			}
 		}
 	}
