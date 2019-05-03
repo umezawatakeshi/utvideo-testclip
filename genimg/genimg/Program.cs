@@ -61,7 +61,7 @@ class Program
         }
 
         String[] types = { "1x1", "2x1", "2x2" };
-        Size[] sizes = { new Size(384, 256), new Size(383, 256), new Size(382, 256), new Size(381, 256), new Size(320, 256), new Size(318, 256), new Size(384, 255), new Size(384, 254), new Size(384, 253), new Size(384, 512), };
+        Size[] sizes = { new Size(384, 256), new Size(383, 256), new Size(382, 256), new Size(381, 256), new Size(322, 256), new Size(320, 256), new Size(318, 256), new Size(384, 255), new Size(384, 254), new Size(384, 253), new Size(384, 512), };
         String[] progints = { "progressive", "interlace" };
         foreach (var type in types)
         {
