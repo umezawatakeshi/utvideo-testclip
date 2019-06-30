@@ -22,7 +22,7 @@ BEGIN {
 	push(@EXPORT, qw($uqxx_divs $uqxx_preds));
 
 	push(@EXPORT, qw($umxx_sizes_444 $umxx_sizes_422 ));
-	push(@EXPORT, qw($umxx_divs));
+	push(@EXPORT, qw($umxx_divs $umxx_k3));
 }
 our @EXPORT_OK;
 
@@ -115,5 +115,7 @@ our $umxx_divs = {
 	8  => 0x00000700,
 	11 => 0x00000a00,
 };
+
+our $umxx_k3 = 0x00020002;
 
 1;

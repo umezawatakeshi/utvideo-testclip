@@ -35,6 +35,54 @@ class Program
         }
 
         {
+            Size size = new Size(384, 512);
+            Bitmap bm = null, bm1;
+
+            Random r = new Random(2);
+            for (var i = 0; i < 3; ++i)
+            {
+                bm1 = new Bitmap(384, 512);
+                for (var y = 0; y < size.Height; y++)
+                {
+                    for (var x = 0; x < size.Width;)
+                    {
+                        var scale = 1 << r.Next(9);
+                        if (i == 0 || r.Next(2) == 0)
+                        {
+                            // intra
+                            do
+                            {
+                                byte v;
+                                if (y == 0)
+                                {
+                                    v = (x > 0) ? bm1.GetPixel(x - 1, y).B : (byte)0x80;
+                                }
+                                else
+                                {
+                                    byte left = (x > 0) ? bm1.GetPixel(x - 1, y).B : (byte)0x80;
+                                    byte top = bm1.GetPixel(x, y - 1).B;
+                                    byte topleft = (x > 0) ? bm1.GetPixel(x - 1, y - 1).B : (byte)0x80;
+                                    v = (byte)(left + top - topleft);
+                                }
+                                bm1.SetPixel(x, y, Color.FromArgb(((v + r.Next(scale) - scale / 2) % 256) * 0x01010101));
+                            } while ((++x) % 8 != 0);
+                        }
+                        else
+                        {
+                            // inter
+                            do
+                            {
+                                bm1.SetPixel(x, y, Color.FromArgb(((bm.GetPixel(x, y).B + r.Next(scale) - scale / 2) % 256) * 0x01010101));
+                            } while ((++x) % 8 != 0);
+                        }
+                    }
+                }
+                bm1.Save(basepath + "\\clip003-" + i + ".png");
+                bm = bm1;
+            }
+        }
+
+        {
             const int width = 384;
             const int height = 512;
             Random r10 = new Random(1);
