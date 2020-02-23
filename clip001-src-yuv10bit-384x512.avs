@@ -12,3 +12,5 @@ clip1 = CombinePlanes(clip_random, clip_blank, clip_blank, planes="YUV", source_
 clip2 = CombinePlanes(clip_blank, clip_random, clip_blank, planes="YUV", source_planes="YYY", pixel_type="YUV444P16")
 clip3 = CombinePlanes(clip_blank, clip_blank, clip_random, planes="YUV", source_planes="YYY", pixel_type="YUV444P16")
 clip1 + clip2 + clip3
+
+ConvertToYUV422(chromaresample="point")
