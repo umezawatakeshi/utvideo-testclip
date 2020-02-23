@@ -25,9 +25,11 @@ my $raws = [
 	{ srcn => "rgb10bitn",  ofmt => VDVFMT_b64a, dstn => "rgb10bitn_b64a",  sizes => $sizes_444 },
 	{ srcn => "rgba10bit",  ofmt => VDVFMT_b64a, dstn => "rgba10bit_b64a",  sizes => $sizes_444 },
 	{ srcn => "rgba10bitn", ofmt => VDVFMT_b64a, dstn => "rgba10bitn_b64a", sizes => $sizes_444 },
-	{ srcn => "yuv10bit",   ofmt => VDVFMT_v210, dstn => "yuv10bit_v210",   sizes => $sizes_422 },
-	{ srcn => "yuv10bit",   ofmt => VDVFMT_YUV422P16LE, dstn => "yuv10bit_yuv422p16le",   sizes => $sizes_422 },
-	{ srcn => "yuv10bitn",  ofmt => VDVFMT_YUV422P16LE, dstn => "yuv10bitn_yuv422p16le",  sizes => $sizes_422 },
+	{ srcn => "yuv42210bit",   ofmt => VDVFMT_v210, dstn => "yuv10bit_v210",   sizes => $sizes_422 },
+	{ srcn => "yuv42210bit",   ofmt => VDVFMT_YUV422P16LE, dstn => "yuv10bit_yuv422p16le",   sizes => $sizes_422 },
+	{ srcn => "yuv42210bitn",  ofmt => VDVFMT_YUV422P16LE, dstn => "yuv10bitn_yuv422p16le",  sizes => $sizes_422 },
+	{ srcn => "yuv42010bit",   ofmt => VDVFMT_YUV420P16LE, dstn => "yuv10bit_yuv420p16le",   sizes => $sizes_420 },
+	{ srcn => "yuv42010bitn",  ofmt => VDVFMT_YUV420P16LE, dstn => "yuv10bitn_yuv420p16le",  sizes => $sizes_420 },
 ];
 
 foreach my $raw (@$raws) {
@@ -99,6 +101,7 @@ my $uqxx_comps = [
 	{ fourcc => "uqrg", srcn => "rgb10bit_b64a",  sizes => $uqxx_sizes_444 },
 	{ fourcc => "uqra", srcn => "rgba10bit_b64a", sizes => $uqxx_sizes_444 },
 	{ fourcc => "uqy2", srcn => "yuv10bit_v210",  sizes => $uqxx_sizes_422 },
+	{ fourcc => "uqy0", srcn => "yuv10bit_yuv420p16le",  sizes => $uqxx_sizes_420 },
 ];
 
 foreach my $comp (@$uqxx_comps) {
