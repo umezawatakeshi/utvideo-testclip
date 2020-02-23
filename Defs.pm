@@ -11,7 +11,7 @@ BEGIN {
 	$VERSION = 1.00;
 	@ISA = qw(Exporter);
 	push(@EXPORT, qw(VDVFMT_AUTO VDVFMT_RGB15 VDVFMT_RGB16 VDVFMT_RGB24 VDVFMT_RGB32 VDVFMT_Y8 VDVFMT_UYVY VDVFMT_YUY2 VDVFMT_YV24 VDVFMT_YV16 VDVFMT_YV12 VDVFMT_YVU9 VDVFMT_NV12));
-	push(@EXPORT, qw(VDVFMT_v210 VDVFMT_b64a VDVFMT_r210 VDVFMT_P210 VDVFMT_P216));
+	push(@EXPORT, qw(VDVFMT_v210 VDVFMT_b64a VDVFMT_YUV444P16LE VDVFMT_YUV422P16LE VDVFMT_YUV420P16LE VDVFMT_r210 VDVFMT_P210 VDVFMT_P216));
 	push(@EXPORT, qw(VDVMODE_DIRECT VDVMODE_FAST VDVMODE_SLOW VDVMODE_FULL));
 	push(@EXPORT, qw($sizes_444 $sizes_422 $sizes_420 $sizes_444_int $sizes_422_int $sizes_420_int));
 
@@ -27,24 +27,27 @@ BEGIN {
 our @EXPORT_OK;
 
 # VirtualDub video formats (for video.SetInputFormat/SetOutputFormat) (from src/h/vd2/Kasumi/pixmap.h)
-sub VDVFMT_AUTO()  {  0 }
-sub VDVFMT_RGB15() {  5 }
-sub VDVFMT_RGB16() {  6 }
-sub VDVFMT_RGB24() {  7 }
-sub VDVFMT_RGB32() {  8 }
-sub VDVFMT_Y8()    {  9 }
-sub VDVFMT_UYVY()  { 10 }
-sub VDVFMT_YUY2()  { 11 }
-sub VDVFMT_YV24()  { 13 }
-sub VDVFMT_YV16()  { 14 }
-sub VDVFMT_YV12()  { 15 }
-sub VDVFMT_YVU9()  { 17 }
-sub VDVFMT_v210()  { 21 }
-sub VDVFMT_NV12()  { 23 }
-sub VDVFMT_b64a()  { 57 }
-sub VDVFMT_r210()  { 65 }
-sub VDVFMT_P210()  { 68 }
-sub VDVFMT_P216()  { 70 }
+sub VDVFMT_AUTO()        {  0 }
+sub VDVFMT_RGB15()       {  5 }
+sub VDVFMT_RGB16()       {  6 }
+sub VDVFMT_RGB24()       {  7 }
+sub VDVFMT_RGB32()       {  8 }
+sub VDVFMT_Y8()          {  9 }
+sub VDVFMT_UYVY()        { 10 }
+sub VDVFMT_YUY2()        { 11 }
+sub VDVFMT_YV24()        { 13 }
+sub VDVFMT_YV16()        { 14 }
+sub VDVFMT_YV12()        { 15 }
+sub VDVFMT_YVU9()        { 17 }
+sub VDVFMT_v210()        { 21 }
+sub VDVFMT_NV12()        { 23 }
+sub VDVFMT_b64a()        { 57 }
+sub VDVFMT_YUV444P16LE() { 58 }
+sub VDVFMT_YUV422P16LE() { 59 }
+sub VDVFMT_YUV420P16LE() { 60 }
+sub VDVFMT_r210()        { 65 }
+sub VDVFMT_P210()        { 68 }
+sub VDVFMT_P216()        { 70 }
 
 # VirtualDub video modes (for video.GetMode/SetMode)
 sub VDVMODE_DIRECT() { 0 }
