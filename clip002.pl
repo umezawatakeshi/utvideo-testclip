@@ -66,6 +66,7 @@ my $raws_hbd = [
 	{ srcn => "rgb10bit",    ofmt => VDVFMT_b64a, dstn => "rgb10bit_b64a",  sizes => $sizes_444 },
 	{ srcn => "rgba10bit",   ofmt => VDVFMT_b64a, dstn => "rgba10bit_b64a", sizes => $sizes_444 },
 	{ srcn => "yuv42210bit", ofmt => VDVFMT_v210, dstn => "yuv10bit_v210",  sizes => $sizes_422 },
+	{ srcn => "yuv42210bit", ofmt => VDVFMT_YUV422P16LE, dstn => "yuv10bit_yuv422p16le",  sizes => $sizes_422 },
 ];
 
 foreach my $raw (@$raws_hbd) {
