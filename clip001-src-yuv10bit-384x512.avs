@@ -1,5 +1,5 @@
 clip_blank_msb = BlankClip(length=1, width=384, height=512, pixel_type="Y8", color_yuv=$800000)
-clip_blank_lsb = BlankClip(length=1, width=384, height=512, pixel_type="Y8", color_yuv=$200000)
+clip_blank_lsb = BlankClip(length=1, width=384, height=512, pixel_type="Y8", color_yuv=$000000)
 StackVertical(clip_blank_msb, clip_blank_lsb)
 ConvertFromStacked
 clip_blank = KillAudio
