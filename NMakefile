@@ -10,6 +10,10 @@ dummy:
 
 all: clip000 clip001 clip002 clip003 clip100 clip200 clip201 clip202 clip203
 
-clip000 clip001 clip002 clip003 clip100 clip200 clip201 clip202 clip203:
-	$(PERL) $@.pl
+clip000 clip001 clip002 clip003 clip100 clip200 clip201 clip202 clip203: $@.vcf
 	$(VDUB) /s $@.vcf
+
+allvcf: clip000.vcf clip001.vcf clip002.vcf clip003.vcf clip100.vcf clip200.vcf clip201.vcf clip202.vcf clip203.vcf
+
+clip000.vcf clip001.vcf clip002.vcf clip003.vcf clip100.vcf clip200.vcf clip201.vcf clip202.vcf clip203.vcf: $*.pl Defs.pm
+	$(PERL) $*.pl
