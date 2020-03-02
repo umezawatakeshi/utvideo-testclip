@@ -66,7 +66,11 @@ my $raws_hbd = [
 	{ srcn => "rgb10bit",    ofmt => VDVFMT_b64a, dstn => "rgb10bit_b64a",  sizes => $sizes_444 },
 	{ srcn => "rgba10bit",   ofmt => VDVFMT_b64a, dstn => "rgba10bit_b64a", sizes => $sizes_444 },
 	{ srcn => "yuv42210bit", ofmt => VDVFMT_v210, dstn => "yuv10bit_v210",  sizes => $sizes_422 },
+	{ srcn => "yuv42210bit", ofmt => VDVFMT_P210, dstn => "yuv10bit_p210",  sizes => $sizes_422 },
+	{ srcn => "yuv42210bit", ofmt => VDVFMT_P216, dstn => "yuv10bit_p216",  sizes => $sizes_422 },
 	{ srcn => "yuv42210bit", ofmt => VDVFMT_YUV422P16LE, dstn => "yuv10bit_yuv422p16le",  sizes => $sizes_422 },
+	{ srcn => "yuv42010bit", ofmt => VDVFMT_P010, dstn => "yuv10bit_p010",  sizes => $sizes_420 },
+	{ srcn => "yuv42010bit", ofmt => VDVFMT_P016, dstn => "yuv10bit_p016",  sizes => $sizes_420 },
 	{ srcn => "yuv42010bit", ofmt => VDVFMT_YUV420P16LE, dstn => "yuv10bit_yuv420p16le",  sizes => $sizes_420 },
 ];
 
