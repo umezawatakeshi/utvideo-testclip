@@ -231,8 +231,8 @@ class Program
                             {
                                 for (var yy = 0; yy < heightstep; yy++)
                                 {
-                                    SetValue16(bml10l, x, y, size.Height, (v << 6));
-                                    SetValue16(bml10f, x, y, size.Height, (v << 6) + (v >> 4));
+                                    SetValue16(bml10l, x + xx, y + yy, size.Height, (v << 6));
+                                    SetValue16(bml10f, x + xx, y + yy, size.Height, (v << 6) + (v >> 4));
                                 }
                             }
                         }
