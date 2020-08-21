@@ -106,7 +106,8 @@ our $uqxx_divs = {
 };
 
 our $uqxx_preds = {
-	left     => 0x00000000,
+	left     => 0x02000000,
+	gradient => 0x04000000,
 };
 
 

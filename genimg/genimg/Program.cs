@@ -240,6 +240,37 @@ class Program
                     bml10l.Save(basepath + "\\clip002-10l-" + type + "-left-" + size.Width + "x" + size.Height + ".png");
                     bml10f.Save(basepath + "\\clip002-10f-" + type + "-left-" + size.Width + "x" + size.Height + ".png");
                 }
+
+                {
+                    Bitmap bml10l = new Bitmap(size.Width, size.Height * 2);
+                    Bitmap bml10f = new Bitmap(size.Width, size.Height * 2);
+                    int[] values = new int[size.Width];
+
+                    for (var x = 0; x < size.Width; x += widthstep)
+                        values[x] = 0x200;
+                    for (var y = 0; y < size.Height; y += heightstep)
+                    {
+                        int left = 0;
+                        int topleft = 0;
+                        for (var x = 0; x < size.Width; x += widthstep)
+                        {
+                            int v = (left + values[x] - topleft + 3 + 0x400) % 0x400;
+                            topleft = values[x];
+                            left = v;
+                            values[x] = v;
+                            for (var xx = 0; xx < widthstep; xx++)
+                            {
+                                for (var yy = 0; yy < heightstep; yy++)
+                                {
+                                    SetValue16(bml10l, x + xx, y + yy, size.Height, (v << 6));
+                                    SetValue16(bml10f, x + xx, y + yy, size.Height, (v << 6) + (v >> 4));
+                                }
+                            }
+                        }
+                    }
+                    bml10l.Save(basepath + "\\clip002-10l-" + type + "-gradient-" + size.Width + "x" + size.Height + ".png");
+                    bml10f.Save(basepath + "\\clip002-10f-" + type + "-gradient-" + size.Width + "x" + size.Height + ".png");
+                }
             }
         }
     }

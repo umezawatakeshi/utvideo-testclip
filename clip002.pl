@@ -168,18 +168,20 @@ foreach my $comp (@$uqxx_comps) {
 		my $height = $sizepair->[1];
 		my $size = $width . "x" . $height;
 		foreach my $div (sort(keys(%$uqxx_divs))) {
-			my $confval = $uqxx_divs->{$div};
-			my $confstr = pack("V", $confval);
-			my $confb64 = encode_base64($confstr, "");
-			print $FH <<__EOT__;
-VirtualDub.Open("clip002-raw-$srcn-left-div$div-$size.avi");
+			foreach my $pred (sort(keys(%$uqxx_preds))) {
+				my $confval = $uqxx_divs->{$div} | $uqxx_preds->{$pred};
+				my $confstr = pack("V", $confval);
+				my $confb64 = encode_base64($confstr, "");
+				print $FH <<__EOT__;
+VirtualDub.Open("clip002-raw-$srcn-$pred-div$div-$size.avi");
 VirtualDub.video.SetMode(3);
 VirtualDub.video.SetInputFormat(0);
 VirtualDub.video.SetOutputFormat(0);
 VirtualDub.video.SetCompression("$fourcc", 0, 0, 0);
 VirtualDub.video.SetCompData(4, "$confb64");
-VirtualDub.SaveAVI("clip002-$fourcc-left-div$div-$size.avi");
+VirtualDub.SaveAVI("clip002-$fourcc-$pred-div$div-$size.avi");
 __EOT__
+			}
 		}
 	}
 }
