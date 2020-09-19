@@ -14,6 +14,7 @@ BEGIN {
 	push(@EXPORT, qw(VDVFMT_v210 VDVFMT_b64a VDVFMT_YUV444P16LE VDVFMT_YUV422P16LE VDVFMT_YUV420P16LE VDVFMT_r210 VDVFMT_P210 VDVFMT_P010 VDVFMT_P216 VDVFMT_P016));
 	push(@EXPORT, qw(VDVMODE_DIRECT VDVMODE_FAST VDVMODE_SLOW VDVMODE_FULL));
 	push(@EXPORT, qw($sizes_444 $sizes_422 $sizes_420 $sizes_444_int $sizes_422_int $sizes_420_int));
+	push(@EXPORT, qw($sizes_420_nv12 $sizes_420_nv12_int));
 
 	push(@EXPORT, qw($ulxx_sizes_444 $ulxx_sizes_422 $ulxx_sizes_420 $ulxx_sizes_444_int $ulxx_sizes_422_int $ulxx_sizes_420_int));
 	push(@EXPORT, qw($ulxx_divs $ulxx_preds $ulxx_progints));
@@ -64,6 +65,9 @@ our $sizes_420     = [ [ 384, 256 ],               [ 382, 256 ],                
 our $sizes_444_int = [ [ 384, 256 ], [ 383, 256 ], [ 382, 256 ], [ 381, 256 ],                                                                       [ 384, 254 ],               [ 384, 512 ] ];
 our $sizes_422_int = [ [ 384, 256 ],               [ 382, 256 ],                                                                                     [ 384, 254 ],               [ 384, 512 ] ];
 our $sizes_420_int = [ [ 384, 256 ],               [ 382, 256 ],                                                                                                                 [ 384, 512 ] ];
+
+our $sizes_420_nv12     = [ [ 384, 256 ],                                                                                                                 [ 384, 254 ],               [ 384, 512 ] ];
+our $sizes_420_nv12_int = [ [ 384, 256 ],                                                                                                                                             [ 384, 512 ] ];
 
 
 # ULxx

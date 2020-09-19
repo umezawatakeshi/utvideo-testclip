@@ -20,6 +20,7 @@ my $raws = [
 	{ srcn => "yuv",   ofmt => VDVFMT_YUY2,  dstn => "yuy2",  sizes => $sizes_422 },
 	{ srcn => "yuv",   ofmt => VDVFMT_YV16,  dstn => "yv16",  sizes => $sizes_422 },
 	{ srcn => "yuv",   ofmt => VDVFMT_YV12,  dstn => "yv12",  sizes => $sizes_420 },
+	{ srcn => "yuv",   ofmt => VDVFMT_NV12,  dstn => "nv12",  sizes => $sizes_420_nv12 },
 	{ srcn => "rgb10bit",  ofmt => VDVFMT_r210, dstn => "rgb10bit_r210",  sizes => $sizes_444 },
 	{ srcn => "rgb10bit",  ofmt => VDVFMT_b64a, dstn => "rgb10bit_b64a",  sizes => $sizes_444 },
 	{ srcn => "rgba10bit", ofmt => VDVFMT_b64a, dstn => "rgba10bit_b64a", sizes => $sizes_444 },

@@ -20,6 +20,7 @@ my $raws = [
 	{ srcn => "yuy2",  ofmt => VDVFMT_YUY2,  dstn => "yuy2",  sizes => $sizes_422, sizes_int => $sizes_422_int },
 	{ srcn => "yuy2",  ofmt => VDVFMT_YV16,  dstn => "yv16",  sizes => $sizes_422, sizes_int => $sizes_422_int },
 	{ srcn => "yv12",  ofmt => VDVFMT_YV12,  dstn => "yv12",  sizes => $sizes_420, sizes_int => $sizes_420_int },
+	{ srcn => "yv12",  ofmt => VDVFMT_NV12,  dstn => "nv12",  sizes => $sizes_420_nv12, sizes_int => $sizes_420_nv12_int },
 ];
 
 foreach my $raw (@$raws) {
